@@ -1,0 +1,40 @@
+services:
+
+  backend:
+
+    build:
+      context: ./backend_files
+
+    container_name:
+      superkart-backend
+
+    ports:
+      - "7860:7860"
+
+    networks:
+      - superkart-network
+
+
+  frontend:
+
+    build:
+      context: ./frontend_files
+
+    container_name:
+      superkart-frontend
+
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      - backend
+
+    networks:
+      - superkart-network
+
+
+networks:
+
+  superkart-network:
+
+    driver: bridge
